@@ -16,8 +16,8 @@ dist: path.join(__dirname, './dist')
 
 /*=====модулі точок(файлів)входа і продакшин====*/
 module.exports = {
-    //  mode: 'development',
- mode:'production',
+     mode: 'development',
+//  mode:'production',
     devServer: {
         port: 8081,
         overlay: {
@@ -73,6 +73,11 @@ plugins: [
       // all options are optional
       filename: 'css/[name].[hash].css',
       ignoreOrder: false, // Enable to remove warnings about conflicting order
+    }),
+    new webpack.ProvidePlugin ({
+        $:'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery'
     }),
 
   ]
