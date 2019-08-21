@@ -16,8 +16,8 @@ dist: path.join(__dirname, './dist')
 
 /*=====модулі точок(файлів)входа і продакшин====*/
 module.exports = {
-     mode: 'development',
-//  mode:'production',
+    //  mode: 'development',
+ mode:'production',
     devServer: {
         port: 8081,
         overlay: {
