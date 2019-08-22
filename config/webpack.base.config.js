@@ -10,21 +10,21 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 /*=======вхідні і вихідні каталоги========*/
 const PATHS ={
-src: path.join(__dirname, './src'),
-dist: path.join(__dirname, './dist')
+src: path.join(__dirname, '../src'),
+dist: path.join(__dirname, '../dist')
 };
 
 /*=====модулі точок(файлів)входа і продакшин====*/
 module.exports = {
-     mode: 'development',
+    //  mode: 'development',
 //  mode:'production',
-    devServer: {
-        port: 8081,
-        overlay: {
-            warnings: false,
-            errors: true
-        }
-    },
+    // devServer: {
+    //     port: 8081,
+    //     overlay: {
+    //         warnings: false,
+    //         errors: true
+    //     }
+    // },
     externals: {
         paths: PATHS
       },
