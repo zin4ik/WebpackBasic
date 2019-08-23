@@ -2,6 +2,11 @@ import '../scss/main.scss'
 
 import '../bootstrap-castum/castum-bootstrap.js'
 
+
+function requireAll(r) { r.keys().forEach(r); }
+requireAll(require.context('../img/', true));
+
+
 console.log('yes');
 
 
