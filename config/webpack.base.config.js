@@ -31,6 +31,16 @@ module.exports = {
     /*====loaders===*/
     rules: [
       {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
+      {
         test: /\.scss$/,
         use: [  
             'style-loader',
@@ -58,7 +68,7 @@ module.exports = {
           use: {
             loader: 'html-loader',
             options: {
-              attrs: [':img:src']
+              attrs: [':img']
             }
           }
         },{
@@ -69,31 +79,10 @@ module.exports = {
                   options:{
                       name:'[name].[ext]',
                       outputPath:`${PATHS.dist}/img/`,
-                      useRelativePath:true
+                      publicPath:"img/",
+                      //useRelativePath:true
                   }
-              },{
-                  loader:'image-webpack-loader',
-                  options:{
-                      mozjpeg:{
-                          progresive:true,
-                          quality:70
-                      },
-                      optipng: {
-                          enabled: false,
-                        },
-                      pngquant: {
-                          quality: '65-90',
-                          speed: 4
-                        },
-                        gifsicle: {
-                          interlaced: false
-                        },
-                        // the webp option will enable WEBP
-                        webp: {
-                          quality: 75
-                        }
-                  }
-              }
+              },
             ]
           }
     ],
@@ -105,11 +94,9 @@ plugins: [
   
     new HtmlWebpackPlugin({
         template:`${PATHS.src}/index.html`
-        //   title: 'Output Management'
+
         }),
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // all options are optional
       filename: 'css/[name].[hash].css',
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
@@ -117,10 +104,11 @@ plugins: [
       { from: `${PATHS.src}/img`, to: `${PATHS.dist}/img/[name].[ext]` },
       { from: `${PATHS.src}/fonts`, to: `${PATHS.dist}/fonts/[name].[ext]` },
     ]),
-    new ImageminPlugin({ 
-      //test: /\.(jpe?g|png|gif|svg)$/i,
+     new ImageminPlugin({ 
+       test: /\.(jpe?g|png|gif|svg)$/i,
+    
       
-    }),
+     }),
     new webpack.ProvidePlugin ({
         $:'jquery',
         jQuery: 'jquery',
